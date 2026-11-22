@@ -1,0 +1,17 @@
+{
+  "version": "1.3.0",
+  "versionCode": 130,
+  "url": "https://github.com/xtuae/instaspace-releases/releases/download/android-v1.3.0/InstaSpace-1.3.0.apk",
+  "sha256": "b9fd1fd1803d56ee41be1d95723878ae60821dc3d2d94ba69e76b463594d8f21",
+  "apks": {
+    "arm64-v8a": {
+      "url": "https://github.com/xtuae/instaspace-releases/releases/download/android-v1.3.0/InstaSpace-1.3.0.apk",
+      "sha256": "b9fd1fd1803d56ee41be1d95723878ae60821dc3d2d94ba69e76b463594d8f21"
+    },
+    "armeabi-v7a": {
+      "url": "https://github.com/xtuae/instaspace-releases/releases/download/android-v1.3.0/InstaSpace-1.3.0-32bit.apk",
+      "sha256": "1133dcaf9bb05a5c3dfc0acb958e2be0d3dce32f0e6f28f2389ccb2bf444138a"
+    }
+  },
+  "notes": "InstaSpace 1.3.0 for Android\n\n• YouTube: download videos, shorts, playlists and channels as MP4 (1080p–360p, H.264 + AAC), M4A or MP3. Playlists get their own folder with numbered files; videos you already have are skipped.\n• Multiple Instagram accounts: add, switch and remove accounts in Settings → Accounts.\n• Watchlist: new posts and stories of chosen accounts are downloaded automatically every 6, 12 or 24 hours.\n• Gallery: browse everything InstaSpace downloaded, filter videos/photos, search, share or delete.\n• Automatic updates: InstaSpace checks for new versions (Settings → Updates).\n• TikTok: download videos from links (share them from the TikTok app), without the watermark when available.\n• Public Instagram posts download without signing in again.\n• New app icon and site logos; a smaller download (separate build for older 32-bit phones)."
+}

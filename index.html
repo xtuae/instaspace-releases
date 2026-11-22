@@ -4,294 +4,127 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>InstaSpace</title>
-<meta name="description" content="Apps for Mac, Windows, Android and iPhone to save Instagram reels, posts, stories, saved posts and profiles, plus your X Bookmarks and YouTube videos and playlists.">
+<meta name="description" content="InstaSpace saves Instagram reels, posts, stories, saved posts and profiles, your X Bookmarks, YouTube videos and TikTok videos. For Mac, Windows and Android.">
 <link rel="icon" href="icon.png">
 <style>
-  :root {
-    --bg: #ffffff; --ink: #17181c; --muted: #5f616b; --line: #e6e7eb; --soft: #f6f6f8; --card: #ffffff;
-    --g1: #fab733; --g2: #ee3366; --g3: #803bd9; --accent: #d9306a; --ok: #1f9d55;
-  }
+  :root { --bg:#fff; --ink:#17181c; --muted:#5f616b; --line:#e3e4e8; --soft:#f5f5f7; --accent:#2f3aa0; --ok:#1f9d55; --btn:#17181c; --btnInk:#fff; }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #111114; --ink: #ececf0; --muted: #a2a4ad; --line: #2a2b31; --soft: #1a1a1f; --card: #17171b; --accent: #ff5b8f; }
+    :root { --bg:#111216; --ink:#ececf0; --muted:#a2a4ad; --line:#2a2b31; --soft:#191a1f; --accent:#9aa3ff; --ok:#3ccf7d; --btn:#ececf0; --btnInk:#111216; }
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; }
-  a { color: var(--accent); text-decoration: none; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-
-  nav { position: sticky; top: 0; z-index: 5; backdrop-filter: saturate(1.4) blur(14px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--line); }
-  nav .wrap { display: flex; align-items: center; gap: 22px; height: 58px; }
-  nav .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); }
-  nav .brand img { width: 28px; height: 28px; border-radius: 7px; }
-  nav .links { margin-left: auto; display: flex; gap: 20px; font-size: 14px; }
-  nav .links a { color: var(--muted); }
-  @media (max-width: 640px) { nav .links a:not(.dl) { display: none; } }
-
-  .hero { padding: 84px 0 60px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content: ""; position: absolute; inset: -40% -10% auto; height: 520px; background: radial-gradient(closest-side, color-mix(in srgb, var(--g2) 22%, transparent), transparent); z-index: -1; }
-  .hero img.logo { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 18px 50px rgba(238,51,102,.32); }
-  .hero h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.05; margin: 26px 0 14px; letter-spacing: -.02em; }
-  .hero h1 span { background: linear-gradient(120deg, var(--g1), var(--g2) 50%, var(--g3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero p.sub { font-size: 19px; color: var(--muted); max-width: 680px; margin: 0 auto 30px; }
-  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 650; font-size: 16px; }
-  .btn.primary { color: #fff; background: linear-gradient(120deg, var(--g2), var(--g3)); box-shadow: 0 10px 26px rgba(128,59,217,.3); }
-  .btn.ghost { color: var(--ink); border: 1px solid var(--line); background: var(--card); }
-  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .meta { margin-top: 16px; font-size: 13px; color: var(--muted); }
-  .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 34px; }
-  .matrix td, .matrix th { text-align: center; padding: 10px 8px; border-bottom: 1px solid var(--line); }
-  .matrix th:first-child, .matrix td:first-child { text-align: left; }
-  .matrix { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-  .matrix .y { color: var(--ok); font-weight: 800; } .matrix .n { color: var(--muted); }
-  .plat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  @media (max-width: 900px) { .plat { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .plat { grid-template-columns: 1fr; } .matrix { font-size: 13px; } }
-  .plat .card ol { padding-left: 18px; margin: 10px 0 0; color: var(--muted); font-size: 14.5px; }
-  .plat .card ol li { margin: 5px 0; }
-  .plat .btn { margin-top: 14px; padding: 10px 16px; font-size: 14px; }
-  .pill { font-size: 13px; padding: 6px 12px; border-radius: 999px; background: var(--soft); border: 1px solid var(--line); color: var(--muted); }
-
-  section { padding: 64px 0; }
-  section.alt { background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .kicker { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
-  h2 { font-size: clamp(28px, 4vw, 38px); line-height: 1.15; margin: 8px 0 12px; letter-spacing: -.01em; }
-  p.lead { color: var(--muted); font-size: 18px; max-width: 720px; margin: 0 0 34px; }
-
-  .grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
-  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-  .card .ic { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; font-size: 21px; background: var(--soft); border: 1px solid var(--line); }
-  .card h3 { margin: 14px 0 6px; font-size: 18px; }
-  .card p { margin: 0; color: var(--muted); font-size: 15px; }
-  .card ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 14.5px; }
-  .card ul li { margin: 3px 0; }
-  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 6px; vertical-align: 2px; }
-  .tag.no { background: color-mix(in srgb, var(--ok) 15%, transparent); color: var(--ok); }
-  .tag.yes { background: color-mix(in srgb, #e07b1a 16%, transparent); color: #e07b1a; }
-
-  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
-  .checks { list-style: none; padding: 0; margin: 0; }
-  .checks li { padding: 9px 0 9px 32px; position: relative; border-bottom: 1px solid var(--line); }
-  .checks li::before { content: "✓"; position: absolute; left: 4px; top: 9px; color: var(--ok); font-weight: 800; }
-
-  /* App-window mockup (illustration, not a screenshot) */
-  .win { border-radius: 14px; border: 1px solid var(--line); background: #1e1e22; box-shadow: 0 30px 70px rgba(0,0,0,.25); overflow: hidden; color: #e8e8ec; font-size: 13px; }
-  .win .bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 12px; background: #2a2a2f; }
-  .win .bar i { width: 11px; height: 11px; border-radius: 50%; display: block; }
-  .win .body { display: grid; grid-template-columns: 150px 1fr; min-height: 300px; }
-  .win .side { background: #25252a; padding: 12px 8px; }
-  .win .side b { display: block; font-size: 10.5px; color: #8b8b94; margin: 10px 8px 4px; }
-  .win .side div { padding: 5px 8px; border-radius: 6px; color: #cfcfd6; }
-  .win .side div.on { background: #2f5fd0; color: #fff; }
-  .win .main { padding: 16px 18px; }
-  .win .main h4 { margin: 0 0 4px; font-size: 16px; }
-  .win .main .s { color: #9a9aa3; font-size: 12px; margin-bottom: 14px; }
-  .win .row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; background: #26262b; margin-bottom: 6px; }
-  .win .row .th { width: 30px; height: 30px; border-radius: 6px; background: linear-gradient(135deg, var(--g1), var(--g2), var(--g3)); flex: none; }
-  .win .row .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .win .row .p { width: 70px; height: 5px; border-radius: 3px; background: #3a3a40; overflow: hidden; }
-  .win .row .p span { display: block; height: 100%; background: #4f8cff; }
-  .win .row .ok { color: #41c46b; font-size: 12px; }
-  .win .tb { display: flex; gap: 8px; margin-bottom: 12px; }
-  .win .tb span { padding: 4px 10px; border-radius: 6px; background: #303036; font-size: 12px; }
-  .win .tb span.on { background: #4f8cff; color: #fff; }
-  @media (max-width: 520px) { .win .body { grid-template-columns: 1fr; } .win .side { display: none; } }
-
-  table.spec { width: 100%; border-collapse: collapse; font-size: 15px; }
-  table.spec td { padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  table.spec td:first-child { font-weight: 650; width: 34%; }
-  ol.steps { padding-left: 22px; }
-  ol.steps li { margin: 8px 0; }
-  code { font: 13.5px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--soft); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; }
-  .note { border-left: 3px solid var(--g3); background: var(--card); border-radius: 0 10px 10px 0; padding: 14px 16px; color: var(--muted); font-size: 14.5px; margin-top: 18px; }
-  footer { padding: 40px 0 60px; color: var(--muted); font-size: 13.5px; text-align: center; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  a { color:var(--accent); }
+  .wrap { max-width:1000px; margin:0 auto; padding:0 16px; }
+  header { border-bottom:1px solid var(--line); }
+  header .wrap { display:flex; align-items:center; gap:10px; height:56px; }
+  header img { width:28px; height:28px; border-radius:7px; box-shadow:0 0 0 1px var(--line); }
+  header b { font-size:17px; }
+  header nav { margin-left:auto; display:flex; gap:18px; font-size:14px; }
+  header nav a { color:var(--muted); text-decoration:none; }
+  @media (max-width:600px) { header nav { display:none; } }
+  .hero { padding-top:56px; padding-bottom:32px; }
+  .hero img.logo { width:88px; height:88px; border-radius:20px; box-shadow:0 0 0 1px var(--line); }
+  h1 { font-size:40px; line-height:1.15; margin:18px 0 10px; letter-spacing:-.02em; }
+  .hero p { color:var(--muted); font-size:18px; max-width:640px; margin:0 0 24px; }
+  .dl { display:flex; flex-wrap:wrap; gap:10px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:9px; font-weight:600; text-decoration:none; background:var(--btn); color:var(--btnInk); }
+  .btn.alt { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .btn.off { background:transparent; color:var(--muted); border:1px dashed var(--line); cursor:default; }
+  .i { width:18px; height:18px; flex:none; }
+  .meta { color:var(--muted); font-size:14px; margin-top:14px; }
+  section { padding:36px 0; border-top:1px solid var(--line); }
+  h2 { font-size:26px; margin:0 0 6px; letter-spacing:-.01em; }
+  .lead { color:var(--muted); margin:0 0 22px; }
+  .shot { width:100%; border-radius:10px; border:1px solid var(--line); display:block; }
+  .cap { color:var(--muted); font-size:14px; margin:8px 0 0; }
+  .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .phones { display:flex; gap:12px; }
+  .phones img { width:50%; border-radius:14px; border:1px solid var(--line); }
+  @media (max-width:760px) { .grid { grid-template-columns:1fr; } }
+  .sites { display:grid; grid-template-columns:repeat(2,1fr); gap:14px 28px; }
+  @media (max-width:760px) { .sites { grid-template-columns:1fr; } }
+  .site h3 { display:flex; align-items:center; gap:8px; margin:0 0 4px; font-size:17px; }
+  .site ul { margin:0; padding-left:20px; color:var(--muted); }
+  table { width:100%; border-collapse:collapse; font-size:15px; }
+  th, td { padding:9px 8px; border-bottom:1px solid var(--line); text-align:center; }
+  th:first-child, td:first-child { text-align:left; }
+  th { font-size:14px; color:var(--muted); font-weight:600; }
+  .ok { color:var(--ok); width:17px; height:17px; vertical-align:middle; }
+  .no { color:var(--muted); }
+  .scroll { overflow-x:auto; }
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:760px) { .steps { grid-template-columns:1fr; } }
+  .step h3 { display:flex; align-items:center; gap:8px; font-size:17px; margin:0 0 6px; }
+  .step ol { margin:0 0 12px; padding-left:20px; color:var(--muted); font-size:15px; }
+  .note { background:var(--soft); border-radius:10px; padding:12px 14px; color:var(--muted); font-size:14px; margin-top:20px; }
+  footer { border-top:1px solid var(--line); padding:24px 0 40px; color:var(--muted); font-size:13px; }
 </style>
 </head>
 <body>
+<header><div class="wrap"><img src="icon.png" alt=""><b>InstaSpace</b>
+  <nav><a href="#apps">Apps</a><a href="#sites">What it saves</a><a href="#compare">Compare</a><a href="#install">Install</a></nav></div></header>
 
-<nav>
-  <div class="wrap">
-    <a class="brand" href="#"><img src="icon.png" alt="">InstaSpace</a>
-    <div class="links">
-      <a href="#features">Features</a>
-      <a href="#x-youtube">X &amp; YouTube</a>
-      <a href="#platforms">Platforms</a>
-      <a href="#install">Install</a>
-      <a class="dl" href="#install">Download</a>
-    </div>
+<div class="wrap hero">
+  <img class="logo" src="icon.png" alt="InstaSpace icon">
+  <h1>Save what you find on Instagram, X, YouTube and TikTok.</h1>
+  <p>InstaSpace downloads reels, posts, stories, saved posts and whole profiles, your X Bookmarks, YouTube videos and TikTok videos to your own computer or phone, in tidy folders, and never downloads the same thing twice.</p>
+  <div class="dl">
+    <a class="btn" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.3/InstaSpace-1.3.dmg"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" /></svg>Mac</a>
+    <a class="btn" href="https://github.com/xtuae/instaspace-windows/releases/download/v1.3.0/InstaSpace-Setup-1.3.0.exe"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2" /> <line x1="8" x2="16" y1="21" y2="21" /> <line x1="12" x2="12" y1="17" y2="21" /></svg>Windows</a>
+    <a class="btn" href="https://github.com/xtuae/instaspace-releases/releases/download/android-v1.3.0/InstaSpace-1.3.0.apk"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /> <path d="M12 18h.01" /></svg>Android</a>
+    <span class="btn off"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="10" height="14" x="3" y="8" rx="2" /> <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" /> <path d="M8 18h.01" /></svg>iPhone: coming soon</span>
   </div>
-</nav>
+  <div class="meta">Version 1.3 · macOS 14+ · Windows 10/11 · Android 8+ · Free · <a href="https://github.com/xtuae/instaspace-releases/releases/download/v1.3/InstaSpace-Feature-Guide.pdf">Feature guide (PDF)</a></div>
+</div>
 
-<header class="hero">
-  <div class="wrap">
-    <img class="logo" src="icon.png" alt="InstaSpace icon">
-    <h1>Everything you save,<br><span>saved to your devices.</span></h1>
-    <p class="sub">InstaSpace runs on Mac, Windows, Android and iPhone. Save Instagram reels, posts, stories, saved posts and whole profiles, plus your X Bookmarks and YouTube videos and playlists. Everything is neatly organized and never downloaded twice.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.dmg">💻 Mac</a>
-      <a class="btn primary" href="https://github.com/xtuae/instaspace-windows/releases/latest/download/InstaSpace-Setup-1.2.0.exe">⊞ Windows</a>
-      <a class="btn ghost" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.apk">🤖 Android</a>
-      <span class="btn ghost" aria-disabled="true" style="opacity:.55;cursor:default">📱 iPhone · Coming soon</span>
-    </div>
-    <div class="meta">Version 1.2 · macOS 14+ · Windows 10/11 · Android 8+ · iOS 17+ · Free · <a href="#platforms">Compare platforms</a> · <a href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-Feature-Guide.pdf">Feature guide (PDF)</a></div>
-    <div class="pills">
-      <span class="pill">Reels &amp; videos</span><span class="pill">Saved posts &amp; collections</span>
-      <span class="pill">Stories &amp; highlights</span><span class="pill">Profiles · Reels · Tagged</span>
-      <span class="pill">Watchlist auto-sync</span><span class="pill">Multiple accounts</span>
-      <span class="pill">X Bookmarks</span><span class="pill">YouTube MP4 · M4A · MP3</span>
-      <span class="pill">Gallery</span><span class="pill">Menu bar</span><span class="pill">Auto-updates</span>
-    </div>
+<section id="apps"><div class="wrap">
+  <h2>The same app on every computer and phone</h2>
+  <p class="lead">One sidebar on Mac and Windows, tabs on Android. Your sign-in happens on each site's own page; InstaSpace never sees your password.</p>
+  <img class="shot" src="img/mac.jpg" alt="InstaSpace on Mac">
+  <p class="cap">Mac</p>
+  <div class="grid" style="margin-top:24px">
+    <div><img class="shot" src="img/windows.jpg" alt="InstaSpace on Windows"><p class="cap">Windows</p></div>
+    <div><div class="phones"><img src="img/android.jpg" alt="InstaSpace on Android"><img src="img/android-settings.jpg" alt="InstaSpace settings on Android"></div><p class="cap">Android</p></div>
   </div>
-</header>
+</div></section>
 
-<section class="alt" id="features">
-  <div class="wrap">
-    <div class="kicker">Instagram</div>
-    <h2>Every way to save from Instagram</h2>
-    <p class="lead">Public links work without an account. Your saved posts, stories and full profiles use a sign-in you do once on Instagram's own page. InstaSpace never sees your password.</p>
-    <div class="grid">
-      <div class="card"><div class="ic">🔗</div><h3>Download Links <span class="tag no">NO LOGIN</span></h3>
-        <p>Paste one or many reel and post links and get full-quality videos and photos, including every item in a carousel.</p></div>
-      <div class="card"><div class="ic">🔖</div><h3>Saved Posts <span class="tag yes">SIGN-IN</span></h3>
-        <p>Bulk-download your saved posts in batches of 20, or a single collection. Optionally un-save each post once all its files are on your Mac.</p></div>
-      <div class="card"><div class="ic">⭕</div><h3>Stories &amp; Highlights <span class="tag yes">SIGN-IN</span></h3>
-        <p>Save current stories before they disappear, plus every Highlight. The account isn't shown that you viewed them.</p></div>
-      <div class="card"><div class="ic">👥</div><h3>Profiles <span class="tag yes">SIGN-IN</span></h3>
-        <p>Posts, the Reels tab or Tagged, for the latest 10, 20, 30, 50 or 100 posts, or all of them. You can queue many accounts at once.</p></div>
-      <div class="card"><div class="ic">👁️</div><h3>Watchlist <span class="tag yes">SIGN-IN</span></h3>
-        <p>Add accounts and InstaSpace checks them automatically for new posts and stories, even at login, in the background.</p></div>
-      <div class="card"><div class="ic">🧑‍🤝‍🧑</div><h3>Multiple accounts</h3>
-        <p>Sign in to several Instagram accounts and switch between them in one click. Each keeps its own session.</p></div>
-    </div>
+<section id="sites"><div class="wrap">
+  <h2>What it saves</h2>
+  <p class="lead">Public links work without an account. Saved posts, stories and profiles use your own signed-in session.</p>
+  <div class="sites">
+    <div class="site"><h3><svg class="i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</h3><ul>
+      <li>Reels, posts and carousels from links</li><li>Saved posts and collections, with optional un-save after download</li>
+      <li>Stories and highlights</li><li>Whole profiles: posts, Reels tab or Tagged</li><li>Watchlist: chosen accounts checked automatically</li></ul></div>
+    <div class="site"><h3><svg class="i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>X</h3><ul><li>Your Bookmarks, photos at original size and best-quality video</li><li>Remove bookmarks once they're saved</li><li>Posts from links</li></ul></div>
+    <div class="site"><h3><svg class="i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube</h3><ul><li>MP4 up to 4K, M4A or MP3</li><li>Whole playlists and channels, each in its own folder</li><li>No account needed</li></ul></div>
+    <div class="site"><h3><svg class="i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</h3><ul><li>Videos from links, without the watermark when available</li><li>Your Favorites and Liked videos (Mac)</li><li>Not available where TikTok is blocked, such as India</li></ul></div>
   </div>
-</section>
+</div></section>
 
-<section id="x-youtube">
-  <div class="wrap">
-    <div class="kicker">Beyond Instagram</div>
-    <h2>Your X Bookmarks and YouTube, too</h2>
-    <p class="lead">The same queue, the same never-twice history and the same tidy folders, now for X and YouTube.</p>
-    <div class="split">
-      <div>
-        <div class="grid" style="grid-template-columns:1fr">
-          <div class="card"><div class="ic">𝕏</div><h3>X Bookmarks &amp; links <span class="tag yes">SIGN-IN</span></h3>
-            <ul>
-              <li>Download your latest 20, 50, 100, 250 or <b>all</b> Bookmarks.</li>
-              <li>Photos at original size, and videos at the best quality available.</li>
-              <li><b>Remove from Bookmarks after download</b>, only once every file of a post is saved.</li>
-              <li><b>Remove Downloaded</b> clears every bookmark you already have.</li>
-            </ul></div>
-          <div class="card"><div class="ic">▶️</div><h3>YouTube <span class="tag no">NO LOGIN</span></h3>
-            <ul>
-              <li><b>MP4</b> from 360p up to 4K, <b>M4A</b> or <b>MP3</b>.</li>
-              <li>Whole <b>playlists and channels</b>, or just the first 10, 25, 50 or 100.</li>
-              <li>Each playlist goes into its own folder, with numbered files.</li>
-            </ul></div>
-        </div>
-      </div>
-      <div class="win" aria-label="Illustration of the InstaSpace window">
-        <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
-        <div class="body">
-          <div class="side">
-            <b>INSTAGRAM</b><div>Download Links</div><div>Saved Posts</div><div>Stories</div><div>Profiles</div><div>Watchlist</div>
-            <b>OTHER SITES</b><div>X</div><div class="on">YouTube</div>
-            <b>LIBRARY</b><div>All Downloads</div><div>Gallery</div><div>Activity</div>
-          </div>
-          <div class="main">
-            <h4>YouTube</h4>
-            <div class="s">Videos, playlists and channels as MP4, M4A or MP3.</div>
-            <div class="tb"><span>MP4 video</span><span class="on">M4A audio</span><span>MP3 audio</span></div>
-            <div class="row"><div class="th"></div><div class="t">3 of 12 · Playlist track</div><div class="p"><span style="width:62%"></span></div></div>
-            <div class="row"><div class="th"></div><div class="t">2 of 12 · Playlist track</div><div class="ok">✓ done</div></div>
-            <div class="row"><div class="th"></div><div class="t">1 of 12 · Playlist track</div><div class="ok">✓ done</div></div>
-            <div class="row"><div class="th"></div><div class="t">Single video</div><div class="ok">✓ done</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+<section id="compare"><div class="wrap">
+  <h2>Compare the apps</h2>
+  <p class="lead">An iPhone and iPad version is in progress.</p>
+  <div class="scroll"><table>
+    <tr><th></th><th>Mac</th><th>Windows</th><th>Android</th></tr>
+    <tr><td>Instagram links, no sign-in</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>Saved posts and collections, un-save</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>Stories and highlights</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>Profiles: posts, Reels tab, Tagged</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>X Bookmarks and links</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>YouTube: MP4, M4A, MP3, playlists</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>TikTok links</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>TikTok Favorites and Liked</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr><tr><td>Multiple Instagram accounts</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>Watchlist and Gallery</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><span class="no">—</span></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr><tr><td>Menu bar mini-app</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr><tr><td>Updates itself</td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td><td><svg class="i ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></td></tr>
+  </table></div>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <h2>Install</h2>
+  <p class="lead">Free downloads, straight from this site's GitHub releases.</p>
+  <div class="steps">
+    <div class="step"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" /></svg>Mac</h3><ol><li>Open <b>InstaSpace-1.3.dmg</b> and drag the app to Applications.</li><li>First launch: right-click the app and choose <b>Open</b>.</li></ol>
+      <a class="btn" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.3/InstaSpace-1.3.dmg"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <polyline points="7 10 12 15 17 10" /> <line x1="12" x2="12" y1="15" y2="3" /></svg>Download for Mac</a></div>
+    <div class="step"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2" /> <line x1="8" x2="16" y1="21" y2="21" /> <line x1="12" x2="12" y1="17" y2="21" /></svg>Windows</h3><ol><li>Run <b>InstaSpace-Setup-1.3.0.exe</b>.</li><li>If Windows warns you, click <b>More info</b>, then <b>Run anyway</b>.</li></ol>
+      <a class="btn" href="https://github.com/xtuae/instaspace-windows/releases/download/v1.3.0/InstaSpace-Setup-1.3.0.exe"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <polyline points="7 10 12 15 17 10" /> <line x1="12" x2="12" y1="15" y2="3" /></svg>Download for Windows</a></div>
+    <div class="step"><h3><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /> <path d="M12 18h.01" /></svg>Android</h3><ol><li>Download <b>InstaSpace-1.3.0.apk</b> on your phone and open it.</li><li>Allow your browser to install unknown apps, then tap <b>Install</b>.</li></ol>
+      <a class="btn" href="https://github.com/xtuae/instaspace-releases/releases/download/android-v1.3.0/InstaSpace-1.3.0.apk"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <polyline points="7 10 12 15 17 10" /> <line x1="12" x2="12" y1="15" y2="3" /></svg>Download APK</a>
+      <p class="cap">Older 32-bit phone? <a href="https://github.com/xtuae/instaspace-releases/releases/download/android-v1.3.0/InstaSpace-1.3.0-32bit.apk">Get the 32-bit APK</a>.</p></div>
   </div>
-</section>
+  <div class="note">All three apps update themselves from 1.3 on. Downloads stay on your device: Downloads/InstaSpace on Mac and Windows, Download/InstaSpace on Android. Only download content you're allowed to keep.</div>
+</div></section>
 
-<section class="alt">
-  <div class="wrap">
-    <div class="kicker">Built to be reliable</div>
-    <h2>Set it running and forget it</h2>
-    <div class="split">
-      <ul class="checks">
-        <li><b>Never downloads twice.</b> A permanent history means re-running anything picks up only what's new.</li>
-        <li><b>Safe removal.</b> Saved posts and bookmarks are removed only after <b>every</b> file is safely on your Mac.</li>
-        <li><b>Organized automatically.</b> Folders by site, account, collection, batch or date, with your own filename template.</li>
-        <li><b>Live queue.</b> Progress for every file, search by username, retry failed.</li>
-        <li><b>Updates itself.</b> <i>Check for Updates</i> installs new versions from inside the app.</li>
-      </ul>
-      <div class="grid" style="grid-template-columns:1fr 1fr">
-        <div class="card"><div class="ic">🖼️</div><h3>Gallery</h3><p>A thumbnail grid of your library with Quick Look.</p></div>
-        <div class="card"><div class="ic">🕓</div><h3>Activity</h3><p>A permanent log of downloads and removals, with CSV export.</p></div>
-        <div class="card"><div class="ic">🎵</div><h3>Audio</h3><p>Save any reel's sound as .m4a.</p></div>
-        <div class="card"><div class="ic">⚡</div><h3>Quick capture</h3><p>Menu bar, drag &amp; drop, clipboard watcher and a Safari button.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alt" id="platforms">
-  <div class="wrap">
-    <div class="kicker">Platforms</div>
-    <h2>One app, everywhere you are</h2>
-    <p class="lead">Same download history rules and the same tidy folders on every device. Here's what each version does:</p>
-    <table class="matrix">
-      <tr><th></th><th>Mac</th><th>Windows</th><th>Android</th><th>iPhone</th></tr>
-      <tr><td>Instagram links, no login</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>Saved posts &amp; collections + un-save</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>Stories &amp; highlights</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>Profiles (posts, reels, tagged)</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>X Bookmarks + remove after download</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>YouTube MP4 · M4A · MP3, playlists</td><td class="y">✓</td><td class="y">✓</td><td class="n">—</td><td class="n">—</td></tr>
-      <tr><td>Multiple Instagram accounts</td><td class="y">✓</td><td class="y">✓</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Share a link from another app</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">—</td></tr>
-      <tr><td>Watchlist, gallery, menu bar</td><td class="y">✓</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
-      <tr><td>Updates itself</td><td class="y">✓</td><td class="y">✓</td><td class="n">—</td><td class="n">—</td></tr>
-    </table>
-  </div>
-</section>
-
-<section id="install">
-  <div class="wrap">
-    <div class="kicker">Get started</div>
-    <h2>Install in a minute</h2>
-    <p class="lead">InstaSpace isn't in the App Store, Microsoft Store or Google Play, so each system asks once before opening it.</p>
-    <div class="plat">
-      <div class="card"><div class="ic">💻</div><h3>Mac</h3>
-        <ol><li>Open <b>InstaSpace-1.2.dmg</b>, drag the app to <b>Applications</b>.</li>
-        <li>First launch: <b>System Settings → Privacy &amp; Security → Open Anyway</b>.</li>
-        <li>Later versions: <b>InstaSpace → Check for Updates…</b></li></ol>
-        <a class="btn primary" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.dmg">Download for Mac</a></div>
-      <div class="card"><div class="ic">⊞</div><h3>Windows</h3>
-        <ol><li>Run <b>InstaSpace-Setup-1.2.0.exe</b>.</li>
-        <li>If SmartScreen appears: <b>More info → Run anyway</b>.</li>
-        <li>It updates itself from <b>Settings → Updates</b>.</li></ol>
-        <a class="btn primary" href="https://github.com/xtuae/instaspace-windows/releases/latest/download/InstaSpace-Setup-1.2.0.exe">Download for Windows</a></div>
-      <div class="card"><div class="ic">🤖</div><h3>Android</h3>
-        <ol><li>Download <b>InstaSpace-1.2.apk</b> on your phone and open it.</li>
-        <li>Allow <b>Install unknown apps</b> for your browser when asked.</li>
-        <li>Share a link from Instagram or X straight into InstaSpace.</li></ol>
-        <a class="btn primary" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.apk">Download APK</a></div>
-      <div class="card"><div class="ic">📱</div><h3>iPhone &amp; iPad</h3>
-        <p>Coming soon.</p></div>
-    </div>
-    <div class="note">Downloads stay on your device: Downloads/InstaSpace on Mac and Windows, Download/InstaSpace on Android. YouTube on Mac and Windows uses the open-source yt-dlp engine, which installs from inside the app on first use.</div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    InstaSpace is an independent app and isn't affiliated with Instagram, Meta, X or YouTube.<br>
-    Download only content you're allowed to keep, and respect creators' rights.
-  </div>
-</footer>
-
+<footer><div class="wrap">InstaSpace is an independent app and isn't affiliated with Instagram, Meta, X, YouTube or TikTok. Site logos from Simple Icons (CC0); interface icons from Lucide (ISC).</div></footer>
 </body>
 </html>
