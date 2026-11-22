@@ -38,7 +38,7 @@
 | **Mac** (macOS 14+) | [InstaSpace-1.2.dmg](https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.dmg) | Drag to Applications. First launch: System Settings → Privacy & Security → Open Anyway. Updates via *Check for Updates…* |
 | **Windows** (10/11) | [InstaSpace-Setup-1.2.0.exe](https://github.com/xtuae/instaspace-windows/releases/latest/download/InstaSpace-Setup-1.2.0.exe) | Run the installer (SmartScreen: More info → Run anyway). Updates itself. |
 | **Android** (8+) | [InstaSpace-1.2.apk](https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.apk) | Open the APK and allow installing unknown apps. |
-| **iPhone / iPad** (iOS 17+) | [InstaSpace-1.2-unsigned.ipa](https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2-unsigned.ipa) | Install with Sideloadly or AltStore (signs with your Apple ID). |
+| **iPhone / iPad** | Coming soon | |
 
 YouTube downloads are on Mac and Windows only.
 
