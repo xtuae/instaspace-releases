@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>InstaSpace for Mac</title>
-<meta name="description" content="A native Mac app to save Instagram reels, posts, stories, saved posts and profiles, plus your X Bookmarks and YouTube videos and playlists.">
+<title>InstaSpace</title>
+<meta name="description" content="Apps for Mac, Windows, Android and iPhone to save Instagram reels, posts, stories, saved posts and profiles, plus your X Bookmarks and YouTube videos and playlists.">
 <link rel="icon" href="icon.png">
 <style>
   :root {
@@ -40,6 +40,16 @@
   .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
   .meta { margin-top: 16px; font-size: 13px; color: var(--muted); }
   .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 34px; }
+  .matrix td, .matrix th { text-align: center; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+  .matrix th:first-child, .matrix td:first-child { text-align: left; }
+  .matrix { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .matrix .y { color: var(--ok); font-weight: 800; } .matrix .n { color: var(--muted); }
+  .plat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .plat { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .plat { grid-template-columns: 1fr; } .matrix { font-size: 13px; } }
+  .plat .card ol { padding-left: 18px; margin: 10px 0 0; color: var(--muted); font-size: 14.5px; }
+  .plat .card ol li { margin: 5px 0; }
+  .plat .btn { margin-top: 14px; padding: 10px 16px; font-size: 14px; }
   .pill { font-size: 13px; padding: 6px 12px; border-radius: 999px; background: var(--soft); border: 1px solid var(--line); color: var(--muted); }
 
   section { padding: 64px 0; }
@@ -108,8 +118,9 @@
     <div class="links">
       <a href="#features">Features</a>
       <a href="#x-youtube">X &amp; YouTube</a>
+      <a href="#platforms">Platforms</a>
       <a href="#install">Install</a>
-      <a class="dl" href="https://github.com/xtuae/instaspace-releases/releases/latest">Download</a>
+      <a class="dl" href="#install">Download</a>
     </div>
   </div>
 </nav>
@@ -117,13 +128,15 @@
 <header class="hero">
   <div class="wrap">
     <img class="logo" src="icon.png" alt="InstaSpace icon">
-    <h1>Everything you save,<br><span>saved to your Mac.</span></h1>
-    <p class="sub">InstaSpace is a native Mac app for Instagram reels, posts, stories, saved posts and whole profiles, plus your X Bookmarks and YouTube videos and playlists. Everything is neatly organized and never downloaded twice.</p>
+    <h1>Everything you save,<br><span>saved to your devices.</span></h1>
+    <p class="sub">InstaSpace runs on Mac, Windows, Android and iPhone. Save Instagram reels, posts, stories, saved posts and whole profiles, plus your X Bookmarks and YouTube videos and playlists. Everything is neatly organized and never downloaded twice.</p>
     <div class="cta">
-      <a class="btn primary" href="https://github.com/xtuae/instaspace-releases/releases/latest">⬇ Download for Mac</a>
-      <a class="btn ghost" href="#features">See all features</a>
+      <a class="btn primary" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.dmg">💻 Mac</a>
+      <a class="btn primary" href="https://github.com/xtuae/instaspace-windows/releases/latest/download/InstaSpace-Setup-1.2.0.exe">⊞ Windows</a>
+      <a class="btn ghost" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.apk">🤖 Android</a>
+      <a class="btn ghost" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2-unsigned.ipa">📱 iPhone &amp; iPad</a>
     </div>
-    <div class="meta">Latest: version 1.2 · macOS 14 Sonoma or later · Apple Silicon &amp; Intel · Free</div>
+    <div class="meta">Version 1.2 · macOS 14+ · Windows 10/11 · Android 8+ · iOS 17+ · Free · <a href="#platforms">Compare platforms</a></div>
     <div class="pills">
       <span class="pill">Reels &amp; videos</span><span class="pill">Saved posts &amp; collections</span>
       <span class="pill">Stories &amp; highlights</span><span class="pill">Profiles · Reels · Tagged</span>
@@ -224,28 +237,55 @@
   </div>
 </section>
 
+<section class="alt" id="platforms">
+  <div class="wrap">
+    <div class="kicker">Platforms</div>
+    <h2>One app, everywhere you are</h2>
+    <p class="lead">Same download history rules and the same tidy folders on every device. Here's what each version does:</p>
+    <table class="matrix">
+      <tr><th></th><th>Mac</th><th>Windows</th><th>Android</th><th>iPhone</th></tr>
+      <tr><td>Instagram links, no login</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Saved posts &amp; collections + un-save</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Stories &amp; highlights</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Profiles (posts, reels, tagged)</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>X Bookmarks + remove after download</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>YouTube MP4 · M4A · MP3, playlists</td><td class="y">✓</td><td class="y">✓</td><td class="n">—</td><td class="n">—</td></tr>
+      <tr><td>Multiple Instagram accounts</td><td class="y">✓</td><td class="y">✓</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Share a link from another app</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">—</td></tr>
+      <tr><td>Watchlist, gallery, menu bar</td><td class="y">✓</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+      <tr><td>Updates itself</td><td class="y">✓</td><td class="y">✓</td><td class="n">—</td><td class="n">—</td></tr>
+    </table>
+  </div>
+</section>
+
 <section id="install">
   <div class="wrap">
     <div class="kicker">Get started</div>
     <h2>Install in a minute</h2>
-    <div class="split" style="align-items:start">
-      <div>
-        <ol class="steps">
-          <li>Download <b>InstaSpace-1.2.dmg</b> from the <a href="https://github.com/xtuae/instaspace-releases/releases/latest">latest release</a>.</li>
-          <li>Open it and drag <b>InstaSpace</b> onto <b>Applications</b>.</li>
-          <li>First launch only: open <b>System Settings → Privacy &amp; Security</b> and click <b>Open Anyway</b>. The app isn't from the App Store, so macOS asks once.</li>
-          <li>For YouTube, click <b>Install engine</b> on the YouTube page. For MP3 and HD video, also click <b>Install ffmpeg</b>.</li>
-        </ol>
-        <div class="note">Already installed? Choose <b>InstaSpace → Check for Updates…</b>. New versions download, install and relaunch automatically. Your history and sign-ins are kept.</div>
-      </div>
-      <table class="spec">
-        <tr><td>Requires</td><td>macOS 14 Sonoma or later</td></tr>
-        <tr><td>Runs on</td><td>Apple Silicon and Intel Macs</td></tr>
-        <tr><td>Size</td><td>About 4 MB (YouTube engine downloaded on first use)</td></tr>
-        <tr><td>Sign-in</td><td>Only for your own saved posts, stories, profiles and X Bookmarks, done on each site's own page</td></tr>
-        <tr><td>Privacy</td><td>No accounts, no tracking. Everything stays on your Mac.</td></tr>
-      </table>
+    <p class="lead">InstaSpace isn't in the App Store, Microsoft Store or Google Play, so each system asks once before opening it.</p>
+    <div class="plat">
+      <div class="card"><div class="ic">💻</div><h3>Mac</h3>
+        <ol><li>Open <b>InstaSpace-1.2.dmg</b>, drag the app to <b>Applications</b>.</li>
+        <li>First launch: <b>System Settings → Privacy &amp; Security → Open Anyway</b>.</li>
+        <li>Later versions: <b>InstaSpace → Check for Updates…</b></li></ol>
+        <a class="btn primary" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.dmg">Download for Mac</a></div>
+      <div class="card"><div class="ic">⊞</div><h3>Windows</h3>
+        <ol><li>Run <b>InstaSpace-Setup-1.2.0.exe</b>.</li>
+        <li>If SmartScreen appears: <b>More info → Run anyway</b>.</li>
+        <li>It updates itself from <b>Settings → Updates</b>.</li></ol>
+        <a class="btn primary" href="https://github.com/xtuae/instaspace-windows/releases/latest/download/InstaSpace-Setup-1.2.0.exe">Download for Windows</a></div>
+      <div class="card"><div class="ic">🤖</div><h3>Android</h3>
+        <ol><li>Download <b>InstaSpace-1.2.apk</b> on your phone and open it.</li>
+        <li>Allow <b>Install unknown apps</b> for your browser when asked.</li>
+        <li>Share a link from Instagram or X straight into InstaSpace.</li></ol>
+        <a class="btn primary" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.apk">Download APK</a></div>
+      <div class="card"><div class="ic">📱</div><h3>iPhone &amp; iPad</h3>
+        <ol><li>Download <b>InstaSpace-1.2-unsigned.ipa</b> on a computer.</li>
+        <li>Install it with <b>Sideloadly</b> or <b>AltStore</b>, which sign it with your Apple ID.</li>
+        <li>With a free Apple ID, re-install every 7 days.</li></ol>
+        <a class="btn primary" href="https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2-unsigned.ipa">Download .ipa</a></div>
     </div>
+    <div class="note">Downloads stay on your device: Downloads/InstaSpace on Mac and Windows, Download/InstaSpace on Android, and Files → On My iPhone → InstaSpace on iPhone. YouTube on Mac and Windows uses the open-source yt-dlp engine, which installs from inside the app on first use.</div>
   </div>
 </section>
 

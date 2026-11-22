@@ -1,6 +1,6 @@
 <p align="center"><img src="icon.png" width="112" alt="InstaSpace icon"></p>
-<h1 align="center">InstaSpace for Mac</h1>
-<p align="center">Save Instagram reels, posts, stories, saved posts and whole profiles, plus your X Bookmarks and YouTube videos and playlists, straight to your Mac.</p>
+<h1 align="center">InstaSpace</h1>
+<p align="center">Save Instagram reels, posts, stories, saved posts and whole profiles, plus your X Bookmarks and YouTube videos and playlists, on Mac, Windows, Android and iPhone.</p>
 <p align="center"><a href="https://github.com/xtuae/instaspace-releases/releases/latest"><b>⬇ Download the latest version</b></a> · <a href="https://xtuae.github.io/instaspace-releases/">Website</a></p>
 
 ---
@@ -31,14 +31,16 @@
 - **Quick capture**: menu bar, drag & drop, clipboard watcher and a Safari button
 - **Check for Updates**: new versions install from inside the app
 
-## Install
-1. Download `InstaSpace-<version>.dmg` from the [latest release](https://github.com/xtuae/instaspace-releases/releases/latest).
-2. Drag **InstaSpace** onto **Applications**.
-3. First launch: **System Settings → Privacy & Security → Open Anyway**. The app isn't from the App Store, so macOS asks once.
+## Download
 
-Already installed? Choose **InstaSpace → Check for Updates…**.
+| Platform | Download | Install |
+|---|---|---|
+| **Mac** (macOS 14+) | [InstaSpace-1.2.dmg](https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.dmg) | Drag to Applications. First launch: System Settings → Privacy & Security → Open Anyway. Updates via *Check for Updates…* |
+| **Windows** (10/11) | [InstaSpace-Setup-1.2.0.exe](https://github.com/xtuae/instaspace-windows/releases/latest/download/InstaSpace-Setup-1.2.0.exe) | Run the installer (SmartScreen: More info → Run anyway). Updates itself. |
+| **Android** (8+) | [InstaSpace-1.2.apk](https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2.apk) | Open the APK and allow installing unknown apps. |
+| **iPhone / iPad** (iOS 17+) | [InstaSpace-1.2-unsigned.ipa](https://github.com/xtuae/instaspace-releases/releases/download/v1.2/InstaSpace-1.2-unsigned.ipa) | Install with Sideloadly or AltStore (signs with your Apple ID). |
 
-**Requires** macOS 14 Sonoma or later, on Apple Silicon or Intel.
+YouTube downloads are on Mac and Windows only.
 
 ---
 InstaSpace is an independent app and isn't affiliated with Instagram, Meta, X or YouTube. Download only content you're allowed to keep.
