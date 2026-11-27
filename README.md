@@ -36,7 +36,7 @@
 
 | Platform | Download | Install |
 |---|---|---|
-| **Mac** (macOS 14+) | [InstaSpace-1.3.3.dmg](https://github.com/xtuae/instaspace-releases/releases/download/v1.3.3/InstaSpace-1.3.3.dmg) | Drag to Applications. First launch: System Settings → Privacy & Security → Open Anyway. Updates via *Check for Updates…* |
+| **Mac** (macOS 14+) | [InstaSpace-1.3.4.dmg](https://github.com/xtuae/instaspace-releases/releases/download/v1.3.4/InstaSpace-1.3.4.dmg) | Drag to Applications. First launch: System Settings → Privacy & Security → Open Anyway. Updates via *Check for Updates…* |
 | **Windows** (10/11) | [InstaSpace-Setup-1.3.1.exe](https://github.com/xtuae/instaspace-windows/releases/download/v1.3.1/InstaSpace-Setup-1.3.1.exe) | Run the installer (SmartScreen: More info → Run anyway). Updates itself. |
 | **Android** (8+) | [InstaSpace-1.3.0.apk](https://github.com/xtuae/instaspace-releases/releases/download/android-v1.3.0/InstaSpace-1.3.0.apk) ([32-bit](https://github.com/xtuae/instaspace-releases/releases/download/android-v1.3.0/InstaSpace-1.3.0-32bit.apk)) | Open the APK and allow installing unknown apps. Updates itself from 1.3 on. |
 | **iPhone / iPad** | Coming soon | |
